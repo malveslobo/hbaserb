@@ -22,6 +22,10 @@ module HBaseRb
       HBaseRb::Table.new @client, tablename
     end
 
+    def get_client()
+      @client
+    end
+
     def create_table(tablename, *column_family_names)
       column_family_names.map! { |name| Apache::Hadoop::Hbase::Thrift::ColumnDescriptor.new(:name => name) }
       @client.createTable tablename, column_family_names
